@@ -4,12 +4,12 @@ A robot that connects gocool server and a go robot.
 
 == TODO
 
-Talk to GoCool server api (get server url from env)
-Send auth info with every request
-Check invitations and accept
-Check pending games
-Do not poll server when robot is thinking
-Support Gnu Go and Fuego through GTP protocol
+* Talk to GoCool server api (get server url from env)
+* Send auth info with every request
+* Check invitations and accept
+* Check pending games
+* Do not poll server when robot is thinking
+* Support Gnu Go and Fuego through GTP protocol
 
 == Contributing to cool_robot
  

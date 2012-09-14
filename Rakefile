@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "cool_robot"
   gem.homepage = "http://github.com/gcao/cool_robot"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Cool Go Robot}
+  gem.description = %Q{A robot that connects a gocool server and a go robot}
   gem.email = "gcao99@gmail.com"
   gem.authors = ["Guoliang Cao"]
   # dependencies defined in Gemfile

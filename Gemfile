@@ -3,6 +3,7 @@ source "http://rubygems.org"
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 
+gem "httparty"
 gem "go_gtp", :git => "https://github.com/JEG2/go_gtp.git"
 
 # Add dependencies to develop your gem here.
@@ -12,6 +13,8 @@ group :development do
   gem "rdoc", "~> 3.12"
   gem "bundler", ">= 1.0.0"
   gem "jeweler", "~> 1.8.4"
+
+  gem "pry"
 
   gem "guard", ">= 0.6.2", :group => :development  
   gem 'rb-fsevent', :group => :development

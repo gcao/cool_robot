@@ -1,0 +1,3 @@
+[submodule "vendor/go_gtp"]
+	path = vendor/go_gtp
+	url = https://github.com/gcao/go_gtp.git

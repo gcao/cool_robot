@@ -4,7 +4,7 @@ source "http://rubygems.org"
 #   gem "activesupport", ">= 2.3.5"
 
 gem "httparty"
-gem "go_gtp", :git => "https://github.com/JEG2/go_gtp.git"
+gem "go_gtp", :path => "vendor/go_gtp"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.

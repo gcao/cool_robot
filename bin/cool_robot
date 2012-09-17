@@ -2,6 +2,8 @@
 # Run this as
 # $ bundle exec bin/cool_robot
 
+ENV['ROBOT_LOG_LEVEL'] ||= "trace"
+
 $:.push(File.expand_path(File.dirname(__FILE__) + '/../lib'))
 
 require 'cool_robot'

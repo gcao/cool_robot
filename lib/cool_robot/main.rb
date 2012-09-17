@@ -1,11 +1,19 @@
 module CoolRobot
   class Main
-    attr :gocool_client
-    attr :gtp_client
+
+    # log settings
+    STARTED = ["started", Logger::INFO]
+    SLEEP   = ["sleep"  , Logger::TRACE]
 
     DEFAULT_SLEEP_TIME = 5
 
+    attr :gocool_client
+    attr :gtp_client
+
     def initialize
+      @logger = Logger.new("CoolRobot")
+      @logger.log STARTED
+
       @gocool_client = GocoolClient.new
       @gtp_client    = GtpClient.new
     end
@@ -14,21 +22,18 @@ module CoolRobot
       while true
         games = @gocool_client.games
         games.each do |game|
-          puts "Gocool Client found game #{game["id"]}"
-          
           sgf = @gocool_client.game_sgf game
           color, x, y = *@gtp_client.play(sgf)
 
-          puts "Gocool Client is sending move [#{color}, #{x}, #{y}] to server"
-          @gocool_client.play game, color, x, y
+          @gocool_client.send_move game, color, x, y
         end
 
         invitations = @gocool_client.invitations
         invitations.each do |invitation|
-          puts "Gocool Client found invitation #{invitation["id"]}"
           @gocool_client.accept invitation
         end
 
+        @logger.log SLEEP, sleep_time
         sleep sleep_time
       end
     end

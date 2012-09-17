@@ -7,19 +7,16 @@ module CoolRobot
     DEBUG = 20
     TRACE = 10
 
-    DEFAULT_VISIBLE_LEVEL = INFO
+    DEFAULT_VISIBLE_LEVEL = TRACE
 
-    # Actions
-    GAME_SGF          = ["game-sgf"  , INFO]
+    attr :level
 
-    def initialize context
+    def initialize context, level = nil
       @context = context
-    end
 
-    def level
-      return @level if @level
-
-      if (level_string = ENV['ROBOT_LOG_LEVEL'])
+      if level
+        @level = level
+      elsif (level_string = ENV['ROBOT_LOG_LEVEL'])
         @level = string_to_level(level_string)
       else
         @level = DEFAULT_VISIBLE_LEVEL
@@ -31,7 +28,10 @@ module CoolRobot
 
       return if self.level > level
 
-      puts level_to_string(level) << action << " | " << args.join(" | ")
+      parts = [level_to_string(level), @context, action, args.map{|arg| arg.to_s }]
+      parts.flatten!
+      parts.compact!
+      puts parts.join(' | ')
     end
 
     def visible? level

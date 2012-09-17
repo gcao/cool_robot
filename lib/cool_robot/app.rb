@@ -1,5 +1,5 @@
 module CoolRobot
-  class Main
+  class App
 
     # log settings
     STARTED = ["started", Logger::INFO]
@@ -11,7 +11,7 @@ module CoolRobot
     attr :gtp_client
 
     def initialize
-      @logger = Logger.new("CoolRobot")
+      @logger = Logger.new("CoolRobot App")
       @logger.log STARTED
 
       @gocool_client = GocoolClient.new

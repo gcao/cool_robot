@@ -1,8 +1,11 @@
-#!/usr/bin/env ruby -w
+#!/usr/bin/env ruby
+# Run this as
+# $ bundle exec bin/cool_robot
+
 $:.push(File.expand_path(File.dirname(__FILE__) + '/../lib'))
 
 require 'cool_robot'
 
-main = CoolRobot::Main.new
-main.run
+app = CoolRobot::App.new
+app.run
 

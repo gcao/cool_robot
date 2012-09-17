@@ -1,4 +1,4 @@
 require 'cool_robot/logger'
 require 'cool_robot/gocool_client'
 require 'cool_robot/gtp_client'
-require 'cool_robot/main'
+require 'cool_robot/app'

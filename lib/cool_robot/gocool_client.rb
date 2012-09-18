@@ -62,10 +62,10 @@ module CoolRobot
 
     # Return ID of created game
     def accept invitation
-      @logger.log(BEFORE_ACCPT_INVITATION)
+      @logger.log(BEFORE_ACCEPT_INVITATION)
       parsed_response = get_and_parse "/api/invitations/#{invitation["id"]}/accept"
       game_id = parsed_response["body"]["game_id"]
-      @logger.log(AFTER_ACCPT_INVITATION, "Created game #{game_id}")
+      @logger.log(AFTER_ACCEPT_INVITATION, "Created game #{game_id}")
       game_id
 
       #response = self.class.post "/api/invitations/#{invitation["id"]}/accept"

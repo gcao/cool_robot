@@ -28,7 +28,7 @@ module CoolRobot
 
       return if self.level > level
 
-      parts = [level_to_string(level), @context, action, args.map{|arg| arg.to_s }]
+      parts = [Time.now.to_s, level_to_string(level), @context, action, args.map{|arg| arg.to_s }]
       parts.flatten!
       parts.compact!
       puts parts.join(' | ')

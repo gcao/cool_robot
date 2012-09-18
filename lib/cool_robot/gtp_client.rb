@@ -21,8 +21,6 @@ module CoolRobot
     DEFAULT_GNUGO_DIR      = File.expand_path("#{vendor_dir}/#{platform}")
     DEFAULT_GNUGO_COMMAND  = "gnugo --mode gtp 2>&1"
 
-    POSITIONS = "ABCDEFGHJKLMNOPQRST"
-
     attr :gtp
 
     def initialize options = {}
@@ -38,7 +36,7 @@ module CoolRobot
       @logger.log(AFTER_START_ROBOT)
     end
 
-    # Return color and coordinates of generated move, e.g. D1 => [4, 0]
+    # Return color and move, e.g. [white, A4]
     def play sgf
       @logger.log(BEFORE_PLAY, sgf)
       @logger.log(WRITE_SGF_TO_TEMP_FILE)
@@ -56,9 +54,7 @@ module CoolRobot
       @logger.log(AFTER_GEN_MOVE, "The robot played #{move}")
       @logger.log(SHOW_BOARD, "\n#{@gtp.showboard}")
 
-      x = POSITIONS.index(move[0])
-      y = move[1..-1].to_i - 1
-      [color, x, y]
+      [color, move]
     end
 
   end

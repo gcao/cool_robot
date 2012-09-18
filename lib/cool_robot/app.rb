@@ -36,8 +36,10 @@ module CoolRobot
       games = @gocool_client.games
       games.each do |game|
         sgf = @gocool_client.game_sgf game
-        color, x, y = *@gtp_client.play(sgf)
 
+        color, move = @gtp_client.play(sgf)
+
+        x, y = move_to_gocool_x_y(move)
         @gocool_client.send_move game, color, x, y
       end
     end
@@ -54,6 +56,13 @@ module CoolRobot
       end
     end
 
+    private
+
+    def move_to_gocool_x_y move
+      x = "ABCDEFGHJKLMNOPQRST".index(move[0])
+      y = 19 - move[1..-1].to_i
+      [x, y]
+    end
   end
 end
 

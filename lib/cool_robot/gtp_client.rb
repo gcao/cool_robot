@@ -15,23 +15,11 @@ module CoolRobot
     BEFORE_GEN_MOVE        = ["before-gen-move"       , Logger::INFO ]
     AFTER_GEN_MOVE         = ["after-gen-move"        , Logger::INFO ]
 
-    #GNUGO             = "gnugo"
-    #FUEGO             = "fuego"
-    #PACHI             = "pachi"
-    #DEFAULT_GO_ENGINE = PACHI
-
     vendor_dir = File.expand_path(File.dirname(__FILE__) + '/../../vendor')
     platform   = "macos"
-    bin_dir    = File.expand_path("#{vendor_dir}/#{platform}")
 
-    DEFAULT_GNUGO_DIR      = bin_dir
+    DEFAULT_GNUGO_DIR      = File.expand_path("#{vendor_dir}/#{platform}")
     DEFAULT_GNUGO_COMMAND  = "gnugo --mode gtp 2>&1"
-
-    #DEFAULT_FUEGO_DIR      = bin_dir
-    #DEFAULT_FUEGO_COMMAND  = "fuego"
-
-    #DEFAULT_PACHI_DIR      = bin_dir
-    #DEFAULT_PACHI_COMMAND  = "pachi"
 
     POSITIONS = "ABCDEFGHJKLMNOPQRST"
 
@@ -40,20 +28,8 @@ module CoolRobot
     def initialize options = {}
       @logger = Logger.new("GTP Client")
 
-      #@go_engine = options[:go_engine] || ENV["GO_ENGINE"] || DEFAULT_GO_ENGINE
-      #case @go_engine
-      #when GNUGO
-        dir     = ENV["GNUGO_DIR"    ] || DEFAULT_GNUGO_DIR
-        command = ENV["GNUGO_COMMAND"] || DEFAULT_GNUGO_COMMAND
-      #when FUEGO
-      #  dir     = ENV["FUEGO_DIR"    ] || DEFAULT_FUEGO_DIR
-      #  command = ENV["FUEGO_COMMAND"] || DEFAULT_FUEGO_COMMAND
-      #when PACHI
-      #  dir     = ENV["PACHI_DIR"    ] || DEFAULT_PACHI_DIR
-      #  command = ENV["PACHI_COMMAND"] || DEFAULT_PACHI_COMMAND
-      #else
-      #  raise "Unknown go engine #{@go_engine}"
-      #end
+      dir     = ENV["GNUGO_DIR"    ] || DEFAULT_GNUGO_DIR
+      command = ENV["GNUGO_COMMAND"] || DEFAULT_GNUGO_COMMAND
 
       @go_engine_startup_command = "#{dir}/#{command}"
 

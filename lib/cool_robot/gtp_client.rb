@@ -15,7 +15,14 @@ module CoolRobot
     BEFORE_GEN_MOVE        = ["before-gen-move"       , Logger::INFO ]
     AFTER_GEN_MOVE         = ["after-gen-move"        , Logger::INFO ]
 
-    DEFAULT_GNUGO_DIR = "/Users/gcao/proj/gnugo/interface"
+    #DEFAULT_GO_ENGINE      = "gnugo"
+    DEFAULT_GO_ENGINE      = "fuego"
+
+    DEFAULT_GNUGO_DIR      = "/Users/gcao/proj/gnugo/interface"
+    DEFAULT_GNUGO_COMMAND  = "gnugo --mode gtp 2>&1"
+
+    DEFAULT_FUEGO_DIR      = "/Users/gcao/proj/fuego/fuegomain"
+    DEFAULT_FUEGO_COMMAND  = "fuego"
 
     POSITIONS = "ABCDEFGHJKLMNOPQRST"
 
@@ -24,10 +31,21 @@ module CoolRobot
     def initialize options = {}
       @logger = Logger.new("GTP Client")
 
-      options[:directory] = ENV["GNUGO_DIR"] || DEFAULT_GNUGO_DIR unless options[:dir]
-      
-      @logger.log(BEFORE_START_ROBOT, options)
-      @gtp = Go::GTP.run_gnugo options
+      @go_engine = options[:go_engine] || ENV["GO_ENGINE"] || DEFAULT_GO_ENGINE
+      if @go_engine == "gnugo"
+        dir     = ENV["GNUGO_DIR"    ] || DEFAULT_GNUGO_DIR
+        command = ENV["GNUGO_COMMAND"] || DEFAULT_GNUGO_COMMAND
+      elsif @go_engine == "fuego"
+        dir     = ENV["FUEGO_DIR"    ] || DEFAULT_FUEGO_DIR
+        command = ENV["FUEGO_COMMAND"] || DEFAULT_FUEGO_COMMAND
+      else
+        raise "Unknown go engine #{@go_engine}"
+      end
+
+      @go_engine_startup_command = "#{dir}/#{command}"
+
+      @logger.log(BEFORE_START_ROBOT, @go_engine_startup_command)
+      @gtp = Go::GTP.new(IO.popen(@go_engine_startup_command, "r+"))
       @logger.log(AFTER_START_ROBOT)
     end
 

@@ -11,6 +11,39 @@ A robot that connects gocool server and a go robot.
 * Do not poll server when robot is thinking
 * Support Gnu Go and Fuego through GTP protocol
 
+== NOTES
+
+=== GNU Go
+
+<pre>
+git clone git://git.savannah.gnu.org/gnugo.git
+cd gnugo
+./configure
+make
+interface/gnugo
+</pre>
+
+=== Pachi
+
+<pre>
+git clone http://repo.or.cz/r/pachi.git
+cd pachi
+sed -i.bak "s/# MAC=1/MAC=1/ Makefile
+make
+./pachi
+</pre>
+
+=== Fuego
+
+<pre>
+svn co https://fuego.svn.sourceforge.net/svnroot/fuego/trunk fuego
+cd fuego
+./install.sh
+./configure
+make
+fuegomain/fuego
+</pre>
+
 == Contributing to cool_robot
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.

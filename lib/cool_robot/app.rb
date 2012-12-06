@@ -20,6 +20,7 @@ module CoolRobot
     end
 
     def run
+      @gtp_client.start
       while true
         handle_games
         handle_invitations

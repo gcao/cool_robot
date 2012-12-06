@@ -1,4 +1,6 @@
 require 'cool_robot/logger'
+require 'cool_robot/log_levels'
 require 'cool_robot/gocool_client'
+require 'cool_robot/gnugo_adapter'
 require 'cool_robot/gtp_client'
 require 'cool_robot/app'

@@ -15,34 +15,28 @@ A robot that connects gocool server and a go robot.
 
 === GNU Go
 
-<pre>
-git clone git://git.savannah.gnu.org/gnugo.git
-cd gnugo
-./configure
-make
-interface/gnugo
-</pre>
+  git clone git://git.savannah.gnu.org/gnugo.git
+  cd gnugo
+  ./configure
+  make
+  interface/gnugo
 
 === Pachi
 
-<pre>
-git clone http://repo.or.cz/r/pachi.git
-cd pachi
-sed -i.bak "s/# MAC=1/MAC=1/ Makefile
-make
-./pachi
-</pre>
+  git clone http://repo.or.cz/r/pachi.git
+  cd pachi
+  sed -i.bak "s/# MAC=1/MAC=1/ Makefile
+  make
+  ./pachi
 
 === Fuego
 
-<pre>
-svn co https://fuego.svn.sourceforge.net/svnroot/fuego/trunk fuego
-cd fuego
-./install.sh
-./configure
-make
-fuegomain/fuego
-</pre>
+  svn co https://fuego.svn.sourceforge.net/svnroot/fuego/trunk fuego
+  cd fuego
+  ./install.sh
+  ./configure
+  make
+  fuegomain/fuego
 
 == Contributing to cool_robot
  

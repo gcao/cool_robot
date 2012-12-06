@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 # Run this as
 # $ bundle exec bin/cool_robot
+# Customize through
+#   ROBOT_LOG_LEVEL
+#   GOCOOL_USER, GOCOOL_PASSWORD
+#   GNU_DIR, GNU_COMMAND
 
 ENV['ROBOT_LOG_LEVEL'] ||= "trace"
 

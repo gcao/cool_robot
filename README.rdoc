@@ -31,9 +31,10 @@ A robot that connects gocool server and a go robot.
 
 === Fuego
 
+  brew install boost
   svn co https://fuego.svn.sourceforge.net/svnroot/fuego/trunk fuego
   cd fuego
-  ./install.sh
+  ./setup-build.sh
   ./configure
   make
   fuegomain/fuego

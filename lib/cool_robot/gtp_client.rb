@@ -15,21 +15,24 @@ module CoolRobot
     BEFORE_GEN_MOVE        = ["before-gen-move"       , Logger::INFO ]
     AFTER_GEN_MOVE         = ["after-gen-move"        , Logger::INFO ]
 
-    vendor_dir = File.expand_path(File.dirname(__FILE__) + '/../../vendor')
-    platform   = "macos"
-
-    DEFAULT_GNUGO_DIR      = File.expand_path("#{vendor_dir}/#{platform}")
-    DEFAULT_GNUGO_COMMAND  = "gnugo --mode gtp 2>&1"
-
     attr :gtp
 
     def initialize options = {}
       @logger = Logger.new("GTP Client")
 
-      dir     = ENV["GNUGO_DIR"    ] || DEFAULT_GNUGO_DIR
-      command = ENV["GNUGO_COMMAND"] || DEFAULT_GNUGO_COMMAND
+      vendor_dir      = File.expand_path(File.dirname(__FILE__) + '/../../vendor')
+      platform        = "macos"
+      engine          = ENV["GTP_ENGINE"] || 'gnugo'
+      command_options = ENV["GTP_ENGINE_OPTIONS"]
 
-      @go_engine_startup_command = "#{dir}/#{command}"
+      @go_engine_startup_command = 
+        if engine =~ /gnugo/i
+          File.expand_path("#{vendor_dir}/#{platform}") + "/gnugo --mode gtp #{command_options} 2>&1"
+        elsif engine =~ /pachi/i
+          File.expand_path("#{vendor_dir}/#{platform}") + "/pachi #{command_options}"
+        else
+          raise "Unsupported GTP Engine: #{engine}"
+        end
 
       @logger.log(BEFORE_START_ROBOT, @go_engine_startup_command)
       @gtp = Go::GTP.new(IO.popen(@go_engine_startup_command, "r+"))
